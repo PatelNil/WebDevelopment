@@ -1,76 +1,189 @@
 <!DOCTYPE html>
- <html>
-     <head>
-         <meta charset="utf-8">
-         link href="https://necolas.github.io/normalize.css/7.0.0/normalize.css" rel="stylesheet">
-         <link href="index.css" rel="stylesheet">
-         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-         <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-         <script
-             src="https://code.jquery.com/jquery-3.2.1.min.js"
-             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-             crossorigin="anonymous"></script>
-         <script src="login.js"></script>
-     </head>
-     <body class="segoe">
-         <div class="topcontainer">
-             <div class="topbar">
-                 <i class="fa fa-twitter logocenter" aria-hidden="true"></i>
-             </div>
- 
-             <div class="AppContent wrapper wrapper-signup" id="page-container">
-                 <link rel="stylesheet" href="https://abs.twimg.com/a/1511833274/css/t1/t1_signup.bundle.css">
-                 <div class="page-canvas">
-                     <div class="signup-wrapper">
-                         <h1>
-                             Join ThinkShare today.
-                         </h1>
-                         <div class="t1-form signup " id="phx-signup-form">
-                             <div class="textbox">
-                                 <div class="prompt name">
-                                     <div data-fieldname="name" class="field">
-                                         <div class="sidetip">
-                                             <p id="nameerror" role="alert" class="blank invalid error">What's your name?</p>
-                                         </div>
-                                         <input type="text" placeholder="Full name" aria-required="true" maxlength="50" id="full-name" class="">
-                                     </div>
-                                 </div>
- 
-                                 <div class="prompt name">
-                                     <div data-fieldname="name" class="field">
-                                         <div class="sidetip">
-                                             <p id="uiderror" role="alert" class="blank invalid error">Write a user id</p>
-                                         </div>
-                                         <input type="text" placeholder="User Id" aria-required="true" maxlength="20" id="uid" class="">
-                                     </div>
-                                 </div>
- 
-                                 <div class="prompt email">
-                                     <div data-fieldname="email" class="field">
-                                         <div class="sidetip">
-                                             <p id="emailerror" role="alert" class="invalid error">Please enter a valid email.</p>
-                                         </div>
-                                         <input type="text" placeholder="Email" aria-required="true" class="email-input" id="email">
-                                     </div>
-                                 </div>
-                                 <div class="prompt password">
-                                     <div data-fieldname="password" class="field">
-                                         <div class="sidetip">
-                                             <p id="passerror" role="alert" class="blank error">Please enter a password.</p>
-                                         </div>
-                                         <input type="password" placeholder="Password" aria-required="true" id="password">
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="doit">
-                                 <div class="sign-up-box">
-                                     <input type="submit" value="Sign up" id="submit_button" class="signup EdgeButton EdgeButton--primary EdgeButton--large submit">
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </body>
- </html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* style the container */
+.container {
+  position: relative;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px 0 30px 0;
+  margin:50px;
+} 
+
+/* style inputs and link buttons */
+input,
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background-color: #55ACEE;
+  color: white;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+}
+
+/* style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Two-column layout */
+.col {
+  float: left;
+  width: 50%;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* vertical line */
+.vl {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid #ddd;
+  height: 175px;
+}
+
+/* text inside the vertical line */
+.vl-innertext {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 8px 10px;
+}
+
+/* hide some text on medium and large screens */
+.hide-md-lg {
+  display: none;
+}
+
+/* bottom container */
+.bottom-container {
+  text-align: center;
+  background-color: #666;
+  border-radius: 0px 0px 4px 4px;
+}
+
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  /* hide the vertical line */
+  .vl {
+    display: none;
+  }
+  /* show the hidden text on small screens */
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+<div>
+<?php include 'navbar.php';
+?>
+</div>
+
+<div class="container">
+  <form action="submitlogin.php" method=POST>
+    <div class="row">
+      <h2 style="text-align:center">Login with Social Media or Manually</h2>
+      <div class="vl">
+        <span class="vl-innertext">or</span>
+      </div>
+
+      <div class="col">
+        <a href="#" class="fb btn">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+         </a>
+        <a href="#" class="twitter btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+          </i> Login with Google+
+        </a>
+      </div>
+
+      <div class="col">
+        <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit">
+    
+      </div>
+      
+    </div>
+  </form>
+</div>
+
+<div class="bottom-container">
+  <div class="row">
+    <div class="col">
+      <a href="signup.php" style="color:white" class="btn">Sign up</a>
+    </div>
+    <div class="col">
+      <a href="PasswordReset.php" style="color:white" class="btn">Forgot password?</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
