@@ -141,7 +141,7 @@ input[type=submit]:hover {
 </div>
 
 <div class="container">
-  <form action="submitlogin.php" method=POST>
+  <form action="login_submit.php" method=POST>
     <div class="row">
       <h2 style="text-align:center">Login with Social Media or Manually</h2>
       <div class="vl">
