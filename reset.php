@@ -1,7 +1,7 @@
 <!-- W3hubs.com - Download Free Responsive Website Layout Templates designed on HTML5 
    CSS3,Bootstrap,Tailwind CSS which are 100% Mobile friendly. w3Hubs all Layouts are responsive 
    cross browser supported, best quality world class designs. -->
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html>
    <head>
       <title>Reset Password Form In Bootstrap</title>
@@ -56,17 +56,27 @@
       </style>
    </head>
    <body>
-      <div class="container d-flex justify-content-center align-items-center vh-100">
+      <?php
+      $email = $_POST['email'];
+      $conn = mysqli_connect("Localhost","root","","thinkwriteshare");
+      $sql = "SELECT * FROM user WHERE email='".$email."'";
+      $result = mysqli_query($conn,$sql);
+      if (mysqli_num_rows($result) > 0){
+        echo '<div class="container d-flex justify-content-center align-items-center vh-100">
          <div class="bg-white text-center p-5 mt-3 center">
             <h3>Forgot Password </h3>
             <p>Enter Your Email-Address</p>
-            <form class="pb-3" action="reset.php" method="POST">
+            <form class="pb-3" action="new_password.php" method="POST">
                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Username*" name="email" required>
+                  <input type="text" class="form-control" placeholder="New Password" name="new" required>
+                  <input type="hidden" name="email" value="'.$email.'">
                </div>
             <input type="submit" class="btn">
             </form>
          </div>
-      </div>
+      </div>';
+      }
+      ?>
+      
    </body>
 </html>

@@ -1,6 +1,6 @@
 
 <?php
-
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -19,7 +19,10 @@ $result = mysqli_query($conn, $sql); //$result = $conn->query($sql);
 if (mysqli_num_rows($result) > 0) //if ($result->num_rows > 0)
 {
 	$row = mysqli_fetch_assoc($result);  //$row = $result->fetch_assoc()
-	header("Location:index.php?uid=" . $row['user_id'] . "&uname=" . $row['first_name'] . " " . $row['last_name'] );
+	$_SESSION['id'] = $row['user_id'];
+	$_SESSION['first_name'] = $row['first_name'];
+	$_SESSION['bdate'] = $row['bdate'];
+	header("Location:index.php");
 }
 else
 	header("Location:login.php");

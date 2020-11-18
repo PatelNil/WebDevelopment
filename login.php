@@ -135,6 +135,9 @@ input[type=submit]:hover {
 </style>
 </head>
 <body>
+<?php 
+session_start();
+?>
 <div>
 <?php include 'navbar.php';
 ?>
