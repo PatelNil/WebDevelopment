@@ -3,6 +3,8 @@
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -173,15 +175,16 @@ window.alert("Login Successful");
       </div>
 <script>
 function like_(para,id){
-  document.getElementById("like"+String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i>'+   para;
+  document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i>'+   para;
 }
 function like__(id){
-  document.getElementById("like"+String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i> Like';
+  document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i> Like';
 }
-function click_(para){
-  document.write("<form action='likeOne.php' method='POST'><input type='hidden' name='like' value="+para+">"+
-  "<input type='submit'>  </form>")
+function click_(id){
+  document.write("<form action='submit_comment.php' method='POST'><input type='hidden' name='like' value="+id+">"+
+  "<input type='text' name='comment'><input type='submit'>  </form>")
 }
+
 </script>
       <?php 
       $servername = "localhost";
@@ -195,24 +198,41 @@ function click_(para){
       }
       $sql = "SELECT * FROM post ORDER BY time DESC";
       $result = mysqli_query($conn,$sql);
-      if (mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){
-          echo '<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+      ?>
+      <?php if (mysqli_num_rows($result)>0){
+        while($row = mysqli_fetch_assoc($result)){?>
+        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">1 min</span>
-        <h4>'.$row['user_id'].'</h4><br>
+        <h4><?php echo $row['user_id']; ?></h4><br>
         <hr class="w3-clear">
-        <p>'.$row['text'].'</p>
-        <button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-      </div>';
-        }
-      }
+        <p><?php echo $row['text'] ?></p>
 
-      ?>
-      
+        <!--<button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+         -->
+        <a href="javascript:void(0)"> 
+        <button id="<?php echo $row['post_id'] ?>" onclick = "like_update('<?php echo $row['post_id'] ?>')"  class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  <span id="like_loop_<?php echo $row['post_id']?>"><?php echo $row['likes']?></span></button> 
+        </a>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" onclick="click_('<?php echo $row['post_id']?>')"><i class="fa fa-comment"></i>  Comment</button>
+      </div>
+        <?php }
+      }?>
     <!-- End Middle Column -->
     </div>
+  <script>
+    function like_update(id){
+  jQuery.ajax({
+    url:'update_count.php',
+    type:'post',
+    data:'type=like&id='+id,
+    success:function(result){
+      var cur_count = jQuery('#like_loop_'+id).html();
+      cur_count++;
+      jQuery('#like_loop_'+id).html(cur_count);
+    }
+  });
+}
+    </script>
     
     <!-- Right Column -->
     <div class="w3-col m2">
