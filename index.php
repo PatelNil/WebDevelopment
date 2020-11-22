@@ -15,13 +15,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <body class="w3-theme-l5">
 <?php
   include 'navbar.php';
-  session_start();  
+  require 'action.php';
 ?>
 <?php
-if (isset($_SESSION['id'])){
-echo '<script>
-window.alert("Login Successful");
-</script>';
+if (!isset($_SESSION['id'])){
+header("Location:login.php");
 }
 ?>
 <!-- Navbar
@@ -181,8 +179,8 @@ function like__(id){
   document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i> Like';
 }
 function click_(id){
-  document.write("<form action='submit_comment.php' method='POST'><input type='hidden' name='like' value="+id+">"+
-  "<input type='text' name='comment'><input type='submit'>  </form>")
+
+  document.write("<form action='submit_comment.php' method='POST'><input type='hidden' name='like' value="+id+"><input type='submit'>  </form>")
 }
 
 </script>
@@ -200,23 +198,23 @@ function click_(id){
       $result = mysqli_query($conn,$sql);
       ?>
       <?php if (mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){?>
+        while($row = mysqli_fetch_assoc($result)){ ?>
+        <?php $s1="SELECT * FROM user WHERE user_id=".$row['user_id'];
+        $r1 = mysqli_query($conn,$s1);
+        $r2 = mysqli_fetch_assoc($r1);?>
         <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">1 min</span>
-        <h4><?php echo $row['user_id']; ?></h4><br>
+        <h4><?php echo $r2['first_name']; ?></h4><br>
         <hr class="w3-clear">
         <p><?php echo $row['text'] ?></p>
 
-        <!--<button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-         -->
+        <!--<button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>-->
         <a href="javascript:void(0)"> 
         <button id="<?php echo $row['post_id'] ?>" onclick = "like_update('<?php echo $row['post_id'] ?>')"  class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  <span id="like_loop_<?php echo $row['post_id']?>"><?php echo $row['likes']?></span></button> 
         </a>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" onclick="click_('<?php echo $row['post_id']?>')"><i class="fa fa-comment"></i>  Comment</button>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" onclick="click_('<?php echo $row['post_id'] ?>')"><i class="fa fa-comment"></i>  Comment</button>
       </div>
-        <?php }
-      }?>
+        <?php }}?>
     <!-- End Middle Column -->
     </div>
   <script>

@@ -91,8 +91,8 @@ button:hover {
     <label for="pswr"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="pswr" required>
     <label for="bdate"><b>Birthday</b></label>
-    <input type="text"  name="bdate" required><br>
-    <label for="gender"><b>Gender</b></label><br>
+    <input type="text"  name="bdate" placeholder='yyyy-mm-dd' required><br>
+    <label for="Gender"><b>Gender</b></label><br>
     <input type="radio"  name="Gender" value=1>Male<br>
     <input type="radio"  name="Gender" value=0>Female<br>
     <input type="radio"  name="Gender" value=0>Other<br>
