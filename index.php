@@ -173,7 +173,8 @@
               <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Write your Thoughts:</h6>
                 <form action='post.php' method=POST>
-                  <input class="w3-input w3-border w3-round-large" type="text" name='post'>
+                 <!-- <input class="w3-input w3-border w3-round-large" type="text" name='post'>-->
+                  <textarea class="w3-input w3-border w3-round" name="post"></textarea>
                   <input type="submit" class="w3-button w3-theme w3-margin-top" value='POST'>
                 </form>
               </div>
@@ -219,7 +220,10 @@
               <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
               <h4><?php echo $r2['first_name']; ?></h4><br>
               <hr class="w3-clear">
-              <p><?php echo $row['text'] ?></p>
+              <div style="margin-bottom:10px ">
+              <span><?php echo $row['text'] ?></span>
+              </div>
+              
 
               <!--<button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>-->
               <a href="javascript:void(0)">

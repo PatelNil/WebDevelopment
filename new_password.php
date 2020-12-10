@@ -10,7 +10,7 @@ session_start() ;
       {
       //        header("Location:login.php?Upadate=True");
       echo "true";
-
+      header("Location:index.php");
       } else {
       //  header("Location:login.php?Upadate=False");
         echo 'false';

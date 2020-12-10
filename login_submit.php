@@ -13,7 +13,7 @@ if (!$conn) //if ($conn->connect_error)
 }
 $pass = $_POST['password'];
 $email = $_POST['username'];
-$sql = "SELECT `user_id`, `first_name`, `last_name`, `email`, `password`, `bdate`, `gender` FROM `user` WHERE email='".$email."' AND password='".$pass."'";
+$sql = "SELECT `user_id`, `first_name`, `last_name`, `email`, `password`, `bdate`, `gender`,`user_type` FROM `user` WHERE email='".$email."' AND password='".$pass."'";
 $result = mysqli_query($conn, $sql); //$result = $conn->query($sql);
 
 if (mysqli_num_rows($result) > 0) //if ($result->num_rows > 0)
@@ -23,7 +23,11 @@ if (mysqli_num_rows($result) > 0) //if ($result->num_rows > 0)
 	$_SESSION['first_name'] = $row['first_name'];
 	$_SESSION['email'] = $row['email'];
 	$_SESSION['bdate'] = $row['bdate'];
+	if ($row['user_type']==0){
+		header("Location:index_admin.php");
+	}else{
 	header("Location:index.php");
+}
 }
 else
 	header("Location:login.php");
