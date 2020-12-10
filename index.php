@@ -5,24 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+  html,
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Open Sans", sans-serif
+  }
 </style>
+
 <body class="w3-theme-l5">
-<?php
+  <?php
   include 'navbar.php';
   require 'action.php';
-?>
-<?php
-if (!isset($_SESSION['id'])){
-header("Location:login.php");
-}
-?>
-<!-- Navbar
+  ?>
+  <?php
+  if (!isset($_SESSION['id'])) {
+    header("Location:login.php");
+  }
+  ?>
+  <!-- Navbar
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
@@ -45,45 +55,42 @@ header("Location:login.php");
 </div>
 -->
 
-<!-- Navbar on small screens -->
-<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-</div>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+  </div>
 
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
-  <!-- The Grid -->
-  <div class="w3-row">
-    <!-- Left Column -->
-    <div class="w3-col m3">
-      <!-- Profile -->
-      <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
-         <?php
-         if (isset($_SESSION['id'])){
-          echo '<h4 class="w3-center">'.$_SESSION["first_name"].'</h4>'; 
-          echo '<p class="w3-center"><img src="images/138.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>';
-         }
-          else{
-            echo '<h4 class="w3-center">My Profile</h4>';
-          echo '<p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>';
-         }
-         
-         
-         
-         echo '<hr>';
-         echo '<p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>';
-         echo '<p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>';
-         echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>'.$_SESSION['bdate'].'</p>';
-         ?>
+  <!-- Page Container -->
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <!-- The Grid -->
+    <div class="w3-row">
+      <!-- Left Column -->
+      <div class="w3-col m3">
+        <div class="w3-card w3-round w3-white">
+          <div class="w3-container">
+            <?php
+            if (isset($_SESSION['id'])) {
+              echo '<h4 class="w3-center">' . $_SESSION["first_name"] . '</h4>';
+              echo '<p class="w3-center"><img src="images/' . $_SESSION["id"] . '.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>';
+            } else {
+              echo '<h4 class="w3-center">My Profile</h4>';
+              echo '<p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>';
+            }
+
+
+
+            echo '<hr>';
+            echo '<p><i class="glyphicon glyphicon-envelope w3-margin-right w3-text-theme"></i>' . $_SESSION['email'] . '</p>';
+            echo '<p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>' . $_SESSION['bdate'] . '</p>';
+            ?>
+          </div>
         </div>
-      </div>
-      <br>
-      
-      <!-- Accordion -->
+        <br>
+
+        <!-- Accordion
       <div class="w3-card w3-round">
         <div class="w3-white">
           <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
@@ -121,8 +128,9 @@ header("Location:login.php");
         </div>      
       </div>
       <br>
-      
-      <!-- Interests --> 
+      -->
+
+        <!-- Interests 
       <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <p>Interests</p>
@@ -142,8 +150,8 @@ header("Location:login.php");
         </div>
       </div>
       <br>
-      
-      <!-- Alert Box -->
+      -->
+        <!-- Alert Box
       <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
           <i class="fa fa-remove"></i>
@@ -151,88 +159,98 @@ header("Location:login.php");
         <p><strong>Hey!</strong></p>
         <p>People are looking at your profile. Find out who.</p>
       </div>
-    
-    <!-- End Left Column -->
-    </div>
-    
-    <!-- Middle Column -->
-    <div class="w3-col m7">
-    
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Social Media template by w3.css</h6>
-	      <form action='post.php' method=POST>
-              <input class="w3-input w3-border w3-round-large" type="text" name='post'>
-	      <input type="submit" class="w3-button w3-theme"> 
-        	</form>
-		</div>
+       -->
+
+        <!-- End Left Column -->
+      </div>
+
+      <!-- Middle Column -->
+      <div class="w3-col m9">
+
+        <div class="w3-row-padding">
+          <div class="w3-col m12">
+            <div class="w3-card w3-round w3-white">
+              <div class="w3-container w3-padding">
+                <h6 class="w3-opacity">Write your Thoughts:</h6>
+                <form action='post.php' method=POST>
+                  <input class="w3-input w3-border w3-round-large" type="text" name='post'>
+                  <input type="submit" class="w3-button w3-theme w3-margin-top" value='POST'>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
+        <script>
+          function like_(para, id) {
+            document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i>' + para;
+          }
+
+          function like__(id) {
+            document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i> Like';
+          }
+          /*
+          function click_(id){
+            alert("<form action='submit_comment.php' method='POST'><input type='hidden' name='like' value="+id+"><input type='submit'>  </form>")
+          }
+          */
+          $(document).ready(function() {
+            $(this).html("<form action='submit_comment.php' method='POST'><input type='submit'>  </form>");
+          })
+        </script>
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = 'thinkwriteshare';
+        $conn = mysqli_connect($servername, $username, $password, $dbname); //$conn = new mysqli($servername, $username, $password, $dbname);
+        if (!$conn) //if ($conn->connect_error)
+        {
+          die("Connection failed: " . mysqli_connect_error()); //die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT * FROM post ORDER BY time DESC";
+        $result = mysqli_query($conn, $sql);
+        ?>
+        <?php if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) { ?>
+            <?php $s1 = "SELECT * FROM user WHERE user_id=" . $row['user_id'];
+            $r1 = mysqli_query($conn, $s1);
+            $r2 = mysqli_fetch_assoc($r1); ?>
+            <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+              <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+              <h4><?php echo $r2['first_name']; ?></h4><br>
+              <hr class="w3-clear">
+              <p><?php echo $row['text'] ?></p>
+
+              <!--<button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>-->
+              <a href="javascript:void(0)">
+                <button id="<?php echo $row['post_id'] ?>" onclick="like_update('<?php echo $row['post_id'] ?>')" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  <span id="like_loop_<?php echo $row['post_id'] ?>"><?php echo $row['likes'] ?></span></button>
+              </a>
+              <form action="submit_comment.php" method="post">
+                <input type='hidden' name='like' value='<?php echo $row['post_id'] ?>'>
+                <button type="submit" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+              </form>
+
+            </div>
+        <?php }
+        } ?>
+        <!-- End Middle Column -->
       </div>
-<script>
-function like_(para,id){
-  document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i>'+   para;
-}
-function like__(id){
-  document.getElementById(String(id)).innerHTML = '<i class="fa fa-thumbs-up"></i> Like';
-}
-function click_(id){
+      <script>
+        function like_update(id) {
+          jQuery.ajax({
+            url: 'update_count.php',
+            type: 'post',
+            data: 'type=like&id=' + id,
+            success: function(result) {
+              var cur_count = jQuery('#like_loop_' + id).html();
+              cur_count++;
+              jQuery('#like_loop_' + id).html(cur_count);
+            }
+          });
+        }
+      </script>
 
-  document.write("<form action='submit_comment.php' method='POST'><input type='hidden' name='like' value="+id+"><input type='submit'>  </form>")
-}
-
-</script>
-      <?php 
-      $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = 'thinkwriteshare' ;
-      $conn = mysqli_connect($servername, $username, $password, $dbname); //$conn = new mysqli($servername, $username, $password, $dbname);
-      if (!$conn) //if ($conn->connect_error)
-      {
-        die("Connection failed: " . mysqli_connect_error()); //die("Connection failed: " . $conn->connect_error);
-      }
-      $sql = "SELECT * FROM post ORDER BY time DESC";
-      $result = mysqli_query($conn,$sql);
-      ?>
-      <?php if (mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){ ?>
-        <?php $s1="SELECT * FROM user WHERE user_id=".$row['user_id'];
-        $r1 = mysqli_query($conn,$s1);
-        $r2 = mysqli_fetch_assoc($r1);?>
-        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><?php echo $r2['first_name']; ?></h4><br>
-        <hr class="w3-clear">
-        <p><?php echo $row['text'] ?></p>
-
-        <!--<button id="like'.$row['post_id'].'" onclick="click_('.$row["post_id"].')" onmouseover="like_('.$row['likes'].','.$row["post_id"].')" onmouseout="like__('.$row["post_id"].')"   class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>-->
-        <a href="javascript:void(0)"> 
-        <button id="<?php echo $row['post_id'] ?>" onclick = "like_update('<?php echo $row['post_id'] ?>')"  class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  <span id="like_loop_<?php echo $row['post_id']?>"><?php echo $row['likes']?></span></button> 
-        </a>
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom" onclick="click_('<?php echo $row['post_id'] ?>')"><i class="fa fa-comment"></i>  Comment</button>
-      </div>
-        <?php }}?>
-    <!-- End Middle Column -->
-    </div>
-  <script>
-    function like_update(id){
-  jQuery.ajax({
-    url:'update_count.php',
-    type:'post',
-    data:'type=like&id='+id,
-    success:function(result){
-      var cur_count = jQuery('#like_loop_'+id).html();
-      cur_count++;
-      jQuery('#like_loop_'+id).html(cur_count);
-    }
-  });
-}
-    </script>
-    
-    <!-- Right Column -->
+      <!-- Right Column
     <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
@@ -270,51 +288,51 @@ function click_(id){
       <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
         <p><i class="fa fa-bug w3-xxlarge"></i></p>
       </div>
-      
-    <!-- End Right Column -->
+       -->
+      <!-- End Right Column -->
     </div>
-    
-  <!-- End Grid -->
+
+    <!-- End Grid -->
   </div>
-  
-<!-- End Page Container -->
-</div>
-<br>
 
-<!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
-</footer>
+  <!-- End Page Container -->
+  </div>
+  <br>
 
-<footer class="w3-container w3-theme-d5">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
- 
-<script>
-// Accordion
-function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-    x.previousElementSibling.className += " w3-theme-d1";
-  } else { 
-    x.className = x.className.replace("w3-show", "");
-    x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-  }
-}
+  <!-- Footer -->
+  <footer class="w3-container w3-theme-d3 w3-padding-16">
+    <h5>Footer</h5>
+  </footer>
 
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
+  <footer class="w3-container w3-theme-d5">
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
 
-</script>
+  <script>
+    // Accordion
+    function myFunction(id) {
+      var x = document.getElementById(id);
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+      } else {
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className =
+          x.previousElementSibling.className.replace(" w3-theme-d1", "");
+      }
+    }
+
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
 
 </body>
-</html> 
+
+</html>

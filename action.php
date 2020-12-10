@@ -54,3 +54,5 @@ if(isset($_POST['update'])){
     }
 }
 ?>
+xhr = new XMLHttpRequest();
+xhr.open('GET',)

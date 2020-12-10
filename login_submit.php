@@ -21,6 +21,7 @@ if (mysqli_num_rows($result) > 0) //if ($result->num_rows > 0)
 	$row = mysqli_fetch_assoc($result);  //$row = $result->fetch_assoc()
 	$_SESSION['id'] = $row['user_id'];
 	$_SESSION['first_name'] = $row['first_name'];
+	$_SESSION['email'] = $row['email'];
 	$_SESSION['bdate'] = $row['bdate'];
 	header("Location:index.php");
 }
